@@ -1,0 +1,77 @@
+---
+title: "Prerequisites and System Requirements"
+description: "Review the supported operating systems, required Python versions, and critical dependencies you need before installing capa. Ensures your environment is ready for a smooth installation and operation."
+---
+
+## Preparing Your Environment for capa Installation
+
+Before installing capa, it’s essential to ensure your system and software environment meet the required specifications. This preparation avoids common installation hurdles and guarantees capa runs smoothly once installed. capa depends primarily on Python and certain system capabilities, which vary slightly depending on your operating system.
+
+### Supported Operating Systems
+
+capa is officially supported on major desktop platforms where Python is available. The compatibility extends to recent versions of:
+
+- **Windows** (Windows 10 and later recommended) 
+- **Linux** distributions (Ubuntu 18.04+, Debian 10+, Fedora 30+)
+- **macOS** (macOS 10.14 Mojave and above)
+
+Running capa on these platforms ensures a stable execution environment. While other platforms or older OS versions might work, they are not guaranteed to be supported.
+
+### Python Version Requirements
+
+capa requires **Python 3.8 or later**. This version range ensures compatibility with capa’s dependencies and leverages modern Python features for performance and security. Installing an unsupported Python version can cause installation failures or runtime errors.
+
+If multiple Python versions are installed, verify that your environment’s default `python3` points to version 3.8 or higher:
+
+```bash
+python3 --version
+```
+
+You should see output similar to:
+
+```
+Python 3.8.10
+```
+
+If your Python version is below 3.8, upgrade to meet this requirement prior to installing capa.
+
+### Critical Dependency Checklist
+
+Beyond the Python interpreter, capa depends on several Python packages and system libraries that must be present or easily installable. These include:
+
+- **pip**: Python’s package installer, used to install capa and its dependencies.
+- **pefile**: For parsing and analyzing Portable Executable files.
+- **pyyaml**: For handling capa's rule definitions in YAML format.
+- **capstone** and **unicorn**: Low-level libraries for disassembly and emulation, essential for capa’s analysis.
+
+Most dependencies should be automatically installed during `pip install capa`, but system-level build tools may be required to compile some components, especially on Linux and macOS.
+
+### Additional System Tools and Permissions
+
+- Ensure you have **administrative or root access** to install Python packages globally or use Python virtual environments where appropriate.
+- On Linux and macOS, make certain that **build tools** like `gcc`, `make`, and development headers for Python are installed. For example, on Ubuntu, you might run:
+
+```bash
+sudo apt-get install build-essential python3-dev
+```
+
+- On Windows, ensure Visual Studio Build Tools are present if compilation steps trigger.
+
+### Validating Your Environment
+
+Before proceeding with installation, validate your setup by checking your Python version and pip availability:
+
+```bash
+python3 --version
+pip3 --version
+```
+
+Both commands should return the version information without errors.
+
+<Tip>
+If your Python or pip commands are not found, confirm your PATH environment variables include the Python install location or consider installing Python via an official installer from python.org.
+</Tip>
+
+Preparing a compatible environment upfront minimizes installation errors and supports capa’s full feature set. For detailed installation instructions, visit the [Installation Instructions](/getting-started/setup-and-installation/installation-instructions) page.
+
+<Source url="https://github.com/mandiant/capa" paths={[{"path": "requirements.txt", "range": "1-20"}]} />

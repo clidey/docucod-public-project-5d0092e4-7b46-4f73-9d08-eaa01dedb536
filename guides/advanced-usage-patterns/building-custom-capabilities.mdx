@@ -1,0 +1,66 @@
+---
+title: "Building Custom Capabilities in capa"
+description: "A detailed walkthrough for users who want to define new detection capabilities. Explains how to extend capa with custom logic by working with Capability and Feature classes, integrating with the detection engine, and managing capability logic."
+---
+
+## Defining New Capabilities in capa for Custom Detection
+
+Expanding capa’s detection capabilities unlocks deeper insight and flexibility tailored to your analysis needs. This guide walks you through the process of creating new detection capabilities by working with capa's Capability and Feature classes and integrating your logic seamlessly into the detection engine.
+
+Adding custom capabilities empowers you to spot behaviors and patterns unique to your environment or threat model, enhancing automated binary analysis with your specialized rules and logic.
+
+### Preparing Your Environment and Understanding Key Concepts
+
+Before diving into capability creation, ensure you have a working capa setup and familiarity with capa’s rule syntax from the [Writing and Modifying capa Rules](/guides/getting-started-workflows/writing-modifying-capa-rules) page. Custom capabilities extend beyond declarative rules into structured Python classes that define the logic capa uses to detect features.
+
+Your development environment should have the capa repository cloned with your preferred editor and Python installed. Understanding how capa parses rules and conducts feature detection establishes the groundwork required to build custom detection logic.
+
+### Creating Capability and Feature Classes
+
+At the core of custom detection are the `Capability` and `Feature` classes. A `Capability` represents a high-level behavior capa looks for in binary analysis results, whereas a `Feature` encapsulates the atomic elements capa identifies during scanning.
+
+Start by subclassing the `Capability` class to represent your new capability concept. Implement methods to evaluate whether features detected during analysis satisfy your capability’s conditions. Similarly, define or extend `Feature` classes to capture granular properties or patterns relevant to your logic.
+
+For example, if you want to detect a bespoke API usage pattern or a custom obfuscation technique, your Feature class can model these characteristics explicitly. Your Capability class then aggregates these feature detections to conclude whether your capability exists in the analyzed binary.
+
+Use meaningful, descriptive names for your classes and methods so they clearly tie to the behaviors you seek. This clarity aids both future maintenance and collaboration.
+
+### Integrating Custom Logic with the Detection Engine
+
+Once your Capability and Feature classes are defined, integrate them into capa’s detection workflow. This typically involves registering your classes so capa’s engine invokes your logic during binary scanning.
+
+Modify the detection engine’s configuration or initialization code to include your new classes. This integration ensures capa’s core engine queries your capability definitions alongside built-in ones, enriching the breadth of detections.
+
+Testing your capability integration involves running capa on known binaries or samples that should trigger your custom logic. Adjust your detection heuristics as needed based on these real-world validations.
+
+<Tip>
+Keep your custom capabilities modular and isolated to simplify debugging and future updates. Avoid overly complex detection logic within a single class; instead, break down detection into smaller features collaborating through the Capability class.
+</Tip>
+
+### Managing and Evolving Your Custom Capabilities
+
+As you refine your detection needs, your capabilities will evolve. Maintain your custom logic in separate modules or directories within your capa environment. Leverage version control to track changes and collaborate effectively.
+
+Document your custom capability classes extensively, including what each feature represents, conditions for detection, and example binaries where it applies. This documentation helps onboard others and maintains institutional knowledge.
+
+Be mindful of performance impacts. Complex custom logic can slow detection runs; profile and optimize your code where possible. Also, periodically review your custom capabilities against new capa core updates to ensure compatibility.
+
+### Verifying Your Custom Capability Works
+
+After integration, verify your custom capability triggers correctly by scanning relevant binaries and examining capa’s JSON output or text reports. Confirm that your capability is detected only when appropriate and does not generate false positives.
+
+Use logging or debug outputs within your Capability class evaluation methods to trace detection decisions during analysis. This insight accelerates troubleshooting.
+
+<Warning>
+If your capability never triggers as expected, ensure your Feature class is correctly detecting target properties and that your Capability logic correctly aggregates these features. Also, confirm that integration steps for registration were done accurately.
+</Warning>
+
+### Next Steps and Further Customization
+
+With custom capabilities established, explore combining them with rule-based approaches from the [Writing and Modifying capa Rules](/guides/getting-started-workflows/writing-modifying-capa-rules) documentation. Consider contributing your capabilities back to the community if broadly useful.
+
+For advanced use, investigate how custom capabilities can interface with capa’s extensibility features described in [Integration & Extensibility](/overview/core-concepts-and-features/integrations-and-extensibility).
+
+This extension of capa’s detection framework keeps your analysis adaptive, powerful, and tuned to your evolving threat landscape.
+
+<Source url="https://github.com/mandiant/capa" paths={[{"path": "capa/features/feature.py", "range": "10-85"},{"path": "capa/features/capability.py", "range": "5-60"}]} />

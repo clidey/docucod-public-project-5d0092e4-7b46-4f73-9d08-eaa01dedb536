@@ -1,0 +1,68 @@
+---
+title: "Writing and Modifying capa Rules"
+description: "Understand the structure and logic of capa rules, with practical examples on creating new rules or customizing existing ones for your analysis needs. Covers rule construction, metadata, supported features, and how rules are loaded and applied by capa."
+---
+
+## Understanding and Customizing capa Rules
+
+When working with capa, mastering how to write and modify rules is essential to tailor the tool’s analysis capabilities to your specific needs. Rules define the logical conditions that capa uses to identify capabilities in binaries. This page guides you through the structure and logic behind capa rules, providing practical insights on creating new rules or adjusting existing ones to enhance detection accuracy and relevance.
+
+### The Structure of a capa Rule
+
+At its core, a capa rule combines metadata with a logical structure of conditions that describe a capability's characteristics within binary code. Each rule encapsulates a capability you want capa to detect by defining patterns of behaviors or attributes.
+
+Rules are composed of these main parts:
+- **Metadata:** Includes identifiers like the rule’s name, a short description, author information, and tags that classify the capability.
+- **Conditions:** The logical expressions that outline what capa looks for within a binary, covering API calls, instruction sequences, strings, or other features.
+
+By understanding these elements, you can craft rules that are both precise and flexible.
+
+### Writing New Rules: Practical Foundations
+
+Creating a new capa rule starts with identifying a capability you want to detect, then expressing its essence through capa’s rule syntax. Begin with a clear and concise metadata section that explains the rule’s purpose and context. Following that, build conditions that accurately capture the patterns or behaviors representative of the capability.
+
+For example, if you want to detect when a binary communicates over the network using a particular socket API, your conditions will highlight those specific API calls alongside any complementary behaviors.
+
+Throughout this process, it’s crucial to use simple, readable expressions so that rules remain maintainable and understandable for future modification.
+
+### Modifying Existing Rules to Fit Your Analysis
+
+Capa’s provided rules serve as a strong foundation but will often need adjustments to fit the intricacies of your binaries or analysis objectives. When modifying rules, focus on refining conditions to reduce false positives or extend detection to variants.
+
+Tweaks might involve adding new conditions, adjusting API call filters, or updating metadata to better categorize your rule.
+
+Always validate your changes with test binaries to confirm the new or modified rules behave as expected. This iterative approach ensures that your analysis remains both accurate and efficient.
+
+### Key Features and Supported Logic
+
+Capa rules support a rich set of features for describing binary behaviors, including:
+- Detection of specific API calls and instruction patterns.
+- Boolean logic to combine or exclude conditions.
+- Matching on strings or other embedded data.
+- File-based imports and rule inheritance for modularity and reuse.
+
+Understanding these features allows you to write powerful, expressive rules that can model complex capabilities.
+
+### How capa Loads and Applies Rules
+
+When capa runs, it loads rules from YAML files that define each capability. It parses the metadata and conditions, indexes them for efficient searching, and applies them against the analyzed binary’s extracted features. Matching rules surface as detected capabilities, providing insights into the binary’s behavior.
+
+Customization of this process comes primarily through rule adjustments or creation—there is no need to modify capa’s internal engine for most workflows.
+
+<Source url="https://github.com/mandiant/capa" branch="main" paths={[{"path": "rules/base_rules.yml", "range": "1-150"}]} />
+
+### Practical Tips for Success
+
+Writing effective capa rules is an iterative art. Start simple and progressively refine your rules as you analyze real binaries. Use metadata thoughtfully to ensure proper documentation and grouping within the rule set. Avoid overly broad conditions that could lead to false positives, and leverage logical expressions to constrain matching to meaningful contexts.
+
+Regularly test your rules with known samples and leverage community shared rules for inspiration and best practices.
+
+<Tip>
+Use clear and descriptive rule names and tags to make your rules easily discoverable in large rule sets.
+</Tip>
+
+### Final Thought
+
+Mastering rule writing and modification opens the full power of capa to you, allowing tailored, precise binary analysis that adapts to new challenges and targets. Combine practical examples with iterative validation to develop rules that not only detect expected behaviors but surface new insights uniquely relevant to your goals.
+
+Explore related guides such as [Analyzing Binaries with capa: End-to-End Workflow](/guides/getting-started-workflows/analyzing-binaries-with-capa) to see rules in action and [Building Custom Capabilities in capa](/guides/advanced-usage-patterns/building-custom-capabilities) to deepen your expertise.

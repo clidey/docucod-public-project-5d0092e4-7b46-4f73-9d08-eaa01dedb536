@@ -1,0 +1,48 @@
+---
+title: "Key Features at a Glance"
+description: "A rapid-fire tour of capa’s standout features: rules-based detection, feature extraction, results caching, extensible analysis engine, and flexible CLI workflows. This orientation helps users quickly identify capabilities relevant to their needs."
+---
+
+## Discover capa’s Core Features at a Glance
+
+When you step into reverse engineering or malware analysis, speed and accuracy are paramount. capa’s design meets this demand by combining rule-based detection with an adaptable analysis engine, helping you rapidly pinpoint capabilities within binaries. This page serves as a guided tour of capa’s standout features, making it easier for you to recognize which capabilities align with your unique workflows and objectives.
+
+## What capa Offers and Who Benefits
+
+capa is an extensible binary analysis framework focused on extracting semantic features and detecting capabilities through customizable rule sets. It is built to give analysts confidence and clarity in dissecting complex executable files without losing time in guesswork. Its power lies in combining rigorous feature extraction with an engine that flexibly applies detection logic, adjusting as new malware tactics emerge.
+
+This tool primarily serves malware analysts, reverse engineers, and threat researchers. Whether your goal is to triage suspicious samples or deeply understand executable behaviors, capa’s features streamline your workflow from the first scan to comprehensive insights.
+
+## How capa’s Feature Set Works Together
+
+At its core, capa uses a fast feature extraction process that parses executable functions to identify patterns, calls, and instruction sequences relevant to known behaviors. These extracted features feed into a rules engine powered by human-readable, YAML-based detection rules. This engine matches patterns against capabilities defined in its extensive, community-driven rule repository.
+
+Results are cached intelligently, enabling rapid re-analysis of unchanged files or functions without redundant processing. Additionally, capa supports flexible command-line workflows that adapt to diverse analysis contexts—whether scanning individual files or automating bulk assessments.
+
+Through this synergy, capa enables precision detection without sacrificing speed or adaptability.
+
+## capa in Action: Real-World Applications
+
+Imagine analyzing a newly acquired malware sample. Upon loading the binary, capa quickly extracts features such as API calls, string references, and control flow patterns. Instantly, the rules engine evaluates these features against hundreds of known capability patterns. The output highlights actions like network communication, persistence mechanisms, or anti-debugging techniques, helping you prioritize areas for deeper inspection.
+
+Because capa caches previous results, iterating on updated rule sets or configurations becomes seamless—cutting down repetitive effort. For example, running the command-line tool with `--json` output allows easy integration into your existing pipelines, while interactive mode lets you explore function-level details quickly.
+
+Here is a short example of how you might invoke capa from the CLI to analyze a file and save results:
+
+```bash
+capa --json sample.exe > analysis_results.json
+```
+
+By combining adaptability, extensibility, and performance, capa empowers you to work smarter and more confidently.
+
+## Getting Started with capa’s Features
+
+Getting up and running with capa’s core features requires only a few steps—installing the tool, acquiring or customizing rules, and running your first scan. The integration-friendly CLI ensures you can tailor workflows immediately for bulk processing or targeted investigations.
+
+Explore the [Getting Started](/getting-started) section to understand setup, configuration, and execution. For a deeper dive on capabillities and architecture, visit [What Is capa?](/overview/product-intro-and-architecture/what-is-capa) and [Architecture Overview](/overview/product-intro-and-architecture/architecture-overview).
+
+<Tip>
+Start with sample binaries provided in the repository or your own test files to see feature extraction and detection in action.
+</Tip>
+
+<Source url="https://github.com/mandiant/capa" branch="main" paths={[{"path": "capa/main.py", "range": "10-50"},{"path": "capa/features/feature_extractor.py", "range": "15-80"}]} />

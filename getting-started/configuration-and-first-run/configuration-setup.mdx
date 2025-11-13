@@ -1,0 +1,95 @@
+---
+title: "Configuration Setup"
+description: "Understand how to configure capa for your analysis environment. Learn about command-line arguments, custom settings, and how these impact your runs. Get capa tailored to your use case before you analyze."
+---
+
+## Understanding Configuration Setup for capa
+
+Configuring capa allows you to tailor the tool to your specific analysis environment and workflows, ensuring more accurate and efficient capability detection. This page explains how capa’s command-line arguments and custom settings shape its behavior before you initiate any analysis, helping you gain control over its operation and output.
+
+### Essential Configuration Parameters
+
+capa's functionality pivots around several key command-line options and config files, which influence how it scans, analyzes, and presents results. These parameters let you specify input sources, adjust detection rules, manage output formatting, and optimize performance for your use case.
+
+The most critical parameters include specifying the target binary for analysis, choosing rule sets, defining output verbosity, and setting advanced options related to feature extraction. For instance, you can override default rules with custom ones or enable verbose logging to troubleshoot complex binaries.
+
+A minimal working example to configure capa from the command line looks like this:
+
+```bash
+capa /path/to/binary --rules /path/to/custom/rules --verbose
+```
+
+Here, `/path/to/binary` points to the executable you want to analyze, `--rules` specifies a directory containing your tailored capa rules, and `--verbose` triggers detailed output during the run.
+
+The configuration options you choose directly impact capa's sensitivity and scope during detection, so it's important to align them with the specifics of your analysis goals and environment.
+
+### Customizing capa via Command-Line Arguments
+
+capa exposes a range of command-line flags that you can combine to fine-tune your analysis. Some of the most impactful options include:
+
+- `--input` or positional argument to designate the binary file(s) or directory for analysis
+- `--rules` to select a different set of detection rules beyond the bundled default, helpful if working with bespoke capabilities
+- `--output` and `--json` for configuring the output format and destination, enabling easy integration with automated pipelines
+- `--verbose` or `--quiet` to control logging verbosity, assisting in troubleshooting or reducing noise
+
+Adjusting these parameters changes how capa ingests, processes, and reports on your binary samples. For example, custom rules can significantly boost detection accuracy for niche malware families.
+
+### Config File and Environment Variables
+
+Besides direct command-line arguments, capa supports configuration through environment variables and config files in certain installation contexts. These files allow persistent setting of options like default rule paths, logging levels, and output preferences without retyping command flags on every run.
+
+Modifying a configuration file involves editing key-value pairs that reflect capa settings. A typical entry looks like:
+
+```ini
+rules_dir=/path/to/custom/rules
+logging_level=INFO
+output_format=json
+```
+
+Make sure the paths and options in your config files match your environment’s directory layout for capa to load these preferences correctly.
+
+### How Configuration Influences Your Analysis
+
+Your chosen configuration controls capa’s detection engine and output comprehensiveness. For example, enabling verbose output helps debug why certain features were or weren’t detected, while custom rule sets can unlock insights missed by default capabilities.
+
+Taking the time to configure capa properly before running your first analysis streamlines your workflow and ensures the results meet your expectations without manual post-processing.
+
+### Example: Configuring capa for Targeted Malware Analysis
+
+Suppose you want to analyze a specific set of binaries suspected to contain custom capabilities. You would start by preparing a custom rules directory reflecting those capabilities, then run capa with verbose logging to monitor progress:
+
+<Steps>
+<Step title="Set Custom Rules Directory">
+Prepare or download a rules folder tailored for your analysis and place it in an accessible path, such as `/home/user/capa-rules/`.
+</Step>
+<Step title="Run capa with Custom Rules">
+Execute the analysis command:
+
+```bash
+capa /samples/malware.exe --rules /home/user/capa-rules --verbose
+```
+</Step>
+<Step title="Review Verbose Output">
+Check the console logs to confirm that your custom rules loaded and are applied during feature detection.
+</Step>
+</Steps>
+
+This approach ensures capa is configured to your context, giving you more focused and actionable insights.
+
+### Troubleshooting Configuration Issues
+
+If capa does not behave as expected, common pitfalls include incorrect rule paths, unsupported command flags, or permission problems accessing input files. Always verify your paths and file permissions first.
+
+Try running capa with the `--verbose` flag to gain insight on what configuration options are loaded and how files are handled. Misconfigured rule directories will typically produce warnings or errors indicating missing rules.
+
+<Tip>
+If you encounter missing rule or file errors, double-check that your paths are absolute and that capa has read permissions for those directories.<br /><br />Use the verbose mode to get detailed logs that highlight configuration loading steps.
+</Tip>
+
+### Summary
+
+Effective configuration of capa through command-line options or config files empowers you to tailor analysis runs precisely to your needs. It influences detection accuracy, output formats, and overall usability. Starting with a deliberate, minimal configuration targeted at your analysis scenario sets the stage for successful capability discovery.
+
+For deeper understanding and practical workflows, see the [First Successful Run](/getting-started/configuration-and-first-run/first-successful-run) and [Troubleshooting and Quick Validation](/getting-started/configuration-and-first-run/troubleshooting-and-validation) pages.
+
+<Source url="https://github.com/mandiant/capa" paths={[{"path": "capa/main.py", "range": "45-80"},{"path": "capa/config.py", "range": "12-55"}]} branch="main" />

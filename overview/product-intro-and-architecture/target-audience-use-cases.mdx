@@ -1,0 +1,56 @@
+---
+title: "Target Audience & Use Cases"
+description: "See if capa is for you. This page profiles the main audiences—reverse engineers, malware analysts, and security automation teams—and spotlights typical workflows and integration scenarios, including static analysis, threat hunting, and automated malware triage."
+---
+
+## Understanding capa’s Primary Users and their Workflows
+
+capa is designed to empower professionals dealing with binary analysis and malware investigation by providing precise, automated capability detection. Whether you're aiming to unravel the behavior of complex executables, hunt for emerging threats, or streamline security automation pipelines, capa delivers actionable insights that accelerate your work. This page dives into who benefits most from capa and spotlights concrete ways they engage with it to turn raw data into meaningful intelligence.
+
+## Who Uses capa and Why
+
+capa serves three main audiences, each with distinct goals yet overlapping needs:
+
+**Reverse engineers** rely on capa to quickly identify functional elements of binaries during deep manual or semi-automated analysis. This helps them understand obfuscated code, uncover hidden features, or verify exploit methods without starting from scratch.
+
+**Malware analysts** use capa as a critical tool for triaging unknown samples. By automatically surfacing capabilities—like network communication, file manipulation, or anti-debugging—their investigation time shrinks dramatically, allowing faster threat characterization and reporting.
+
+**Security automation teams** integrate capa into workflows for static analysis, threat hunting, and automated triage. It fits perfectly where large volumes of binaries require rapid, consistent capability extraction destined for SIEM platforms, alerting systems, or enrichment pipelines.
+
+This diversity of users underscores capa’s flexibility and reliability across different professional contexts, providing a valuable foundation for tackling malware and reverse engineering challenges efficiently.
+
+## How Users Typically Work with capa
+
+At the core, capa operates as a static analysis engine that scans executable files to uncover known capabilities defined by a rich rule set. The process begins when a user supplies a binary to capa for examination. capa parses the file, examines its code patterns, API calls, and control flows, then matches these against capability rules crafted to identify specific behaviors.
+
+A malware analyst may drop a suspicious executable into capa as part of their initial triage step. capa outputs detailed capability reports revealing if the file performs actions such as injecting code into other processes or establishes network connections. This information guides deeper dynamic analysis or prioritizes response efforts.
+
+Reverse engineers benefit when capa highlights subtle, hard-to-detect behaviors during in-depth analysis. By layering capa’s automated detection with manual review, they produce comprehensive technical write-ups or develop evasive mitigation strategies.
+
+Security automation teams orchestrate capa into batch scanning operations, feeding its JSON output into broader analytical dashboards and alerting frameworks. This automation helps uncover emerging malware patterns across the enterprise without manual exploration.
+
+### Example: Automated Malware Triage Workflow
+
+```sh
+capa malware_sample.exe --json > results.json
+# results.json now contains a structured summary of detected capabilities
+```
+This simple command-line example encapsulates capa’s efficiency and power. With minimal setup, users receive detailed outputs that integrate smoothly into larger investigative and automation frameworks.
+
+## Scenarios Where capa Adds Maximum Impact
+
+In threat hunting, capa helps analysts identify malicious capabilities embedded in benign-looking binaries across endpoints, revealing stealthy malware activity. Static analysts rely on it to cut through complex binaries to focus testing on critical features. Automation engineers harness capa’s outputs to improve alert quality by filtering out benign anomalies and emphasizing true threats detected through capability patterns.
+
+Its static, signature- and behavior-based approach means capa fits naturally into workflows where dynamic analysis may be costly or infeasible. As malware grows more sophisticated, this capability-first perspective ensures users stay ahead in their investigations and defensive strategies.
+
+## Preparing to Use capa and Next Steps
+
+Before diving in, users should prepare appropriate binaries and determine the objectives—whether it’s fast triage or detailed reverse engineering. Familiarity with basic command-line operations enhances quick adoption but is not mandatory to see benefits.
+
+To get started, visit the [Getting Started Guide](/getting-started/setup-and-installation/prerequisites-and-requirements) to ensure system requirements are met, then proceed to [Installation Instructions](/getting-started/setup-and-installation/installation-instructions). Once installed, the next natural step is the [Analyzing Binaries with capa: End-to-End Workflow](/guides/getting-started-workflows/analyzing-binaries-with-capa) to see real examples of capa in action.
+
+<Tip>
+capa’s value shines when integrated into real analytic workflows—beyond running standalone scans. Investing time in understanding its output format and rule customization can unlock powerful automation and deeper insights.
+</Tip>
+
+<Source url="https://github.com/mandiant/capa" paths={[{"path": "capa/main.py", "range": "10-80"}]} />

@@ -1,0 +1,75 @@
+---
+title: "Analyzing Binaries with capa: End-to-End Workflow"
+description: "Learn how to use capa to analyze binary files from the command line, including setting up the environment, loading rules, running analyses, and interpreting output. This step-by-step guide covers the entire analysis lifecycle and provides troubleshooting tips for common issues."
+---
+
+## Unlocking Binary Insights: Analyzing with capa from Start to Finish
+
+Diving into a binary file to reveal its capabilities can be daunting without the right tools and process. This guide empowers you to use capa from the command line to analyze binaries thoroughly, turning opaque executables into clear, actionable intelligence. By following a structured workflow, you’ll learn how to establish your analysis environment, load and customize detection rules, execute analyses, and interpret capa’s detailed output. This journey typically requires moderate command-line familiarity and can be completed within 20 to 40 minutes.
+
+## Preparing Your Workspace for capa Analysis
+
+Before launching into analysis, ensure your environment is ready for smooth execution. capa operates via the command line and depends on Python along with its dependencies. Confirm you have a compatible system with Python installed — typically Python 3.7 or above is required. You'll also need to have capa installed following the official instructions, including downloading or cloning the capa repository and setting up your Python environment. This setup provides access to default rules essential for capa’s capability detection engine.
+
+Verifying your setup at this stage prevents interruptions and allows capa’s powerful rule engine to operate at peak efficiency. If you haven't completed installation or need environment details, consult the Setup and Installation documentation. Having your binary files accessible in a local directory or path you can reference from the command line streamlines forthcoming commands and analyses.<Source url="https://github.com/mandiant/capa" paths={[{"path": "setup.py", "range": "1-30"}]} />
+
+## Executing Your Binary Analysis with capa
+
+The heart of using capa lies in running targeted command-line instructions that load your binary, apply rule sets, and generate insights. Begin by invoking the core capa command pointing to your binary file. capa automatically uses its bundled rules unless you specify custom ones. The output then details identified capabilities, suspicious patterns, and relevant metadata.
+
+<Steps>
+<Step title="Set Your Working Directory">
+Navigate to the directory containing your binary or capa installation to simplify path references. This ensures command accuracy.
+</Step>
+<Step title="Run Basic Analysis">
+Use `capa path/to/binary` to perform a default rule scan. The terminal will display findings, sorted by capabilities and functions.
+Example:
+```bash
+capa /samples/malware.exe
+```
+</Step>
+<Step title="Load Custom Rules (Optional)">
+If you have specific rules, use the `--rules` option followed by the path to your custom rule files. This tailors the analysis to your environment or research focus.
+
+Example:
+```bash
+capa --rules ./my-rules/ /samples/malware.exe
+```
+</Step>
+<Step title="Generate JSON Output">
+For integration or automation, add the `-j` flag to output JSON-formatted results. This facilitates further processing or import into dashboards.
+
+Example:
+```bash
+capa -j /samples/malware.exe > results.json
+```
+</Step>
+<Step title="Interpret Results">
+Review the output for identified capabilities broken down by affected functions, noting the severity, confidence, and evidence for each capability.
+</Step>
+</Steps>
+
+This workflow allows you to gradually deepen your analysis, from a quick overview to detailed, rule-customized inspections.
+
+## Confirming Success and Handling Common Pitfalls
+
+Upon completion of your analysis command, success is indicated by capa reporting capabilities found in the binary, with no error messages. If you see empty results or error messages, confirm the binary file path is correct and that the binary is supported (e.g., PE, ELF). Check for Python environment issues or missing dependencies.
+
+Running `capa --version` confirms your installed version and helps rule out compatibility problems. If you encounter parsing exceptions or crashes, it may be due to malformed binaries or incompatible formats.
+
+<Tip>
+If your analysis returns no capabilities, verify the rule set loaded contains up-to-date signatures and matches the binary's format.
+</Tip>
+<Warning>
+Running capa on incomplete or packed binaries may result in limited or misleading capability detection. Consider unpacking or preprocessing such binaries first.
+</Warning>
+
+## Completing Your Analysis Journey
+
+By mastering this end-to-end workflow, you transform your approach to binary examination. capa enables you to uncover nuanced malware behaviors and functionality quickly, empowering faster decisions and sharper security insights. With this foundation, you can explore customizing rules further or automating bulk analyses.
+
+Explore related documentation to extend your mastery: deepen your understanding of capa rules in the [Writing and Modifying capa Rules](/guides/getting-started-workflows/writing-modifying-capa-rules) guide or optimize your setup via [Installation Instructions](/getting-started/setup-and-installation/installation-instructions). This foundation prepares you for advanced use cases and integrations.
+
+Your next logical steps include experimenting with custom rules and expanding to performance tuning tailored to your environment.
+
+<Source url="https://github.com/mandiant/capa" paths={[{"path": "README.md", "range": "10-50"}]} />
