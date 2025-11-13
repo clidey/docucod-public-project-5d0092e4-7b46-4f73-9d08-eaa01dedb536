@@ -1,0 +1,92 @@
+{
+  "background": {
+    "decoration": "gradient"
+  },
+  "colors": {
+    "dark": "#1E3A8A",
+    "light": "#60A5FA",
+    "primary": "#60A5FA"
+  },
+  "favicon": "/favicon.svg",
+  "fonts": {
+    "family": "Montserrat",
+    "format": "woff2",
+    "source": "https://fonts.gstatic.com/s/googlesansflex/v5/t5sJIQcYNIWbFgDgAAzZ34auoVyXkJCOvp3SFWJbN5hF8Ju1x6sKCyp0l9sI40swNJwGpVd4AZzz0v6lJ4qFXNZhGjLvDSkV4USKMo6qQzwliVdHAy9jxTDHg_ugnAakpwGc-cxgUqDCIUI.woff2"
+  },
+  "icons": {
+    "library": "fontawesome"
+  },
+  "logo": {
+    "dark": "./logo/logo.svg",
+    "light": "./logo/logo.svg"
+  },
+  "name": "capa",
+  "navigation": {
+    "tabs": [
+      {
+        "groups": [
+          {
+            "group": "Product Introduction \u0026 Architecture",
+            "pages": [
+              "overview/product-intro-and-architecture/what-is-capa",
+              "overview/product-intro-and-architecture/architecture-overview",
+              "overview/product-intro-and-architecture/target-audience-use-cases"
+            ]
+          },
+          {
+            "group": "Core Concepts \u0026 Key Features",
+            "pages": [
+              "overview/core-concepts-and-features/capa-core-concepts",
+              "overview/core-concepts-and-features/feature-overview",
+              "overview/core-concepts-and-features/integrations-and-extensibility"
+            ]
+          }
+        ],
+        "tab": "Overview"
+      },
+      {
+        "groups": [
+          {
+            "group": "Setup and Installation",
+            "pages": [
+              "getting-started/setup-and-installation/prerequisites-and-requirements",
+              "getting-started/setup-and-installation/installation-instructions"
+            ]
+          },
+          {
+            "group": "Configuration and First Run",
+            "pages": [
+              "getting-started/configuration-and-first-run/configuration-setup",
+              "getting-started/configuration-and-first-run/first-successful-run",
+              "getting-started/configuration-and-first-run/troubleshooting-and-validation"
+            ]
+          }
+        ],
+        "tab": "Getting Started"
+      },
+      {
+        "groups": [
+          {
+            "group": "Getting Started \u0026 Core Workflows",
+            "pages": [
+              "guides/getting-started-workflows/analyzing-binaries-with-capa",
+              "guides/getting-started-workflows/writing-modifying-capa-rules"
+            ]
+          },
+          {
+            "group": "Advanced Usage \u0026 Best Practices",
+            "pages": [
+              "guides/advanced-usage-patterns/building-custom-capabilities",
+              "guides/advanced-usage-patterns/performance-tuning-and-integration"
+            ]
+          }
+        ],
+        "tab": "Guides"
+      }
+    ]
+  },
+  "styling": {
+    "codeblocks": "dark",
+    "eyebrows": "breadcrumbs"
+  }
+}
