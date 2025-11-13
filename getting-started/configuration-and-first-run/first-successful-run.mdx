@@ -1,0 +1,72 @@
+---
+title: "First Successful Run"
+description: "A practical walkthrough that takes you through running capa on a sample binary. See key CLI commands, expected results, and common parameters—ensuring you experience capa’s detection in action right away."
+---
+
+## Running Your First capa Analysis
+
+Jump-start your exploration of capa’s powerful binary analysis by running a simple, guided scan on a sample binary. This page walks you through using capa’s command-line interface (CLI) to execute your first analysis, showcasing key commands and parameters to ensure you see capa’s detection capabilities in action immediately.
+
+### Preparing to Run capa
+Before diving in, ensure you have capa installed and accessible via your terminal or command prompt. While this guide isolates running capa on a sample binary, confirm that your environment matches capa’s prerequisites detailed [here](/getting-started/setup-and-installation/prerequisites-and-requirements).
+
+Locate or download a sample binary—a simple executable file suitable for testing capa’s detection features. Many users begin with publicly available benign binaries or test samples to observe capa’s output patterns. Having a binary ready lets you follow the instructions without interruption.
+
+### Executing the Analysis
+To begin, open your terminal and navigate to the directory containing the sample binary. capa analyzes files directly via CLI arguments, producing detailed JSON and human-readable reports by default.
+
+<Steps>
+<Step title="Run capa on the Sample Binary">
+Execute the following command, replacing `sample_binary` with your file name or path:
+
+```bash
+capa sample_binary
+```
+
+This command triggers capa’s analysis, scanning the binary for known capabilities as defined in its rules.
+</Step>
+<Step title="Observe Output Summary">
+After running, capa provides a summary report highlighting detected capabilities, their confidence levels, and matched rules. You should see a structured output showing which behaviors the binary exhibits according to capa's detection logic.
+</Step>
+<Step title="Run with JSON Output for Automation">
+To get machine-readable results suitable for integration or further processing, add the `--json` flag:
+
+```bash
+capa --json sample_binary > results.json
+```
+
+Review the `results.json` file to examine capa’s detailed findings.
+</Step>
+<Step title="Use Verbose Mode for Debugging">
+If you want to understand capa’s internal progress or troubleshoot issues, enable verbose mode:
+
+```bash
+capa --verbose sample_binary
+```
+
+Verbose output reveals step-by-step analysis stages.
+</Step>
+</Steps>
+
+### Understanding Your Results
+The output you receive highlights specific capabilities detected in the analyzed binary, such as file operations, network communication patterns, or anti-analysis techniques. Each capability output is tied to a set of rules matching the binary’s behaviors.
+
+For example, you might see entries like 'Reads registry keys' or 'Creates remote threads', reflecting capa’s detection logic in action. This immediate feedback provides not only validation that capa is working but also valuable insight into the binary’s potential functionality.
+
+### Practical Tips for Running capa
+
+- Always run capa on binaries you have permission to analyze to stay compliant with legal and ethical standards.
+- Use the `--rules` option to specify custom rulesets if you want to tailor capa’s detection to specific targets or scenarios.
+- For comprehensive analysis, consider combining capa with related tools described in the [Analysis Workflows guide](/guides/getting-started-workflows/analyzing-binaries-with-capa).
+
+<Tip>
+If your analysis produces no detected capabilities, verify the binary format and ensure capa supports it. Some compiled formats or stripped binaries might not yield extensive detections.
+</Tip>
+
+### What to Expect on Success
+A successful run concludes with a clear list of matched capabilities, enabling you to confidently assess the binary’s behaviors. The command-line returns to the prompt without errors, and the output provides tools for deeper investigation or reporting.
+
+You have now completed your initial capa analysis and are poised to explore more advanced options like rule customization and integration.
+
+### Next Steps
+Advance your journey by configuring capa’s rules tailored to your needs as described in [Configuration Setup](/getting-started/configuration-and-first-run/configuration-setup) or deepen your understanding of rule authoring in [Writing and Modifying Rules](/guides/getting-started-workflows/writing-modifying-capa-rules).
