@@ -1,0 +1,99 @@
+---
+title: "Installation Instructions"
+description: "This guide covers step-by-step installation for capa across different platforms. Whether you are on Windows, macOS, or Linux, follow these instructions to get capa running without hassle."
+---
+
+## Installation Instructions
+
+Setting up capa efficiently is your first step toward empowering binary analysis with precision and speed. This guide walks you through installing capa on Windows, macOS, and Linux platforms, ensuring you get up and running smoothly regardless of your environment.
+
+### Before You Begin
+
+Make sure your system meets the basic prerequisites to avoid installation interruptions. capa requires Python 3.6 or later and pip, the Python package installer. Confirm your Python installation is up to date by running `python3 --version` or `python --version` depending on your operating system. You will also need internet access to download the package and its dependencies. Administrative or appropriate user permissions may be necessary to install software on your machine.
+
+If you want to verify detailed environment requirements or prepare for advanced setups, the Prerequisites and System Requirements page offers comprehensive information that complements this guide.
+
+### Installing capa
+
+Installation of capa is streamlined via pip, Python's package manager, making the process straightforward across all supported platforms. This approach ensures you always get the latest stable release.
+
+<Steps>
+<Step title="Install capa via pip">
+Open your terminal or command prompt and run the following command to install capa globally:
+
+```bash
+pip install capa
+```
+
+You should see a sequence indicating successful package download and installation, ending with a message similar to "Successfully installed capa-<version>".
+</Step>
+<Step title="Verify the installation">
+Once installed, check that capa is accessible by checking its version:
+
+```bash
+capa --version
+```
+
+Successful output will display the version number, indicating that capa is correctly installed and ready to use.
+</Step>
+<Step title="Alternative: Installing in a virtual environment">
+For isolated Python environments and easier dependency management, consider setting up a virtual environment first:
+
+```bash
+python3 -m venv capa-env
+source capa-env/bin/activate   # On Windows, use: .\capa-env\Scripts\activate
+pip install capa
+```
+
+This method prevents package conflicts and keeps your global environment clean.
+</Step>
+</Steps>
+
+### Configuring for First Use
+
+After installation, capa works out of the box for many basic binary analysis tasks. Configuration becomes important when you want to customize detection rules, integrate capa into larger workflows, or modify output behaviors. The core configuration is managed through command-line options or by placing configuration files alongside your analysis targets.
+
+For example, you can point capa to a custom rules directory with the `--rules` option:
+
+```bash
+capa --rules /path/to/custom/rules sample-binary
+```
+
+In typical use, no mandatory modification of configuration files is needed; capas’ built-in default settings enable immediate productive use. For more complex options and configurations, refer to the [Configuration Setup](/getting-started/configuration-and-first-run/configuration-setup) documentation.
+
+<Source url="https://github.com/mandiant/capa" branch="main" paths={[{"path": "setup.py", "range": "10-50"}]} />
+
+### Running capa for the First Time
+
+Testing your capa installation on a sample binary verifies that the installation is correct and familiarizes you with its operation. Start with a simple test binary you trust or one available from your environment.
+
+<Steps>
+<Step title="Execute capa analysis">
+Run capa against the sample binary:
+
+```bash
+capa /path/to/sample-binary
+```
+
+This command launches capa's signature detection engine, which inspects the binary and reports matching capabilities.
+</Step>
+<Step title="Review the output">
+Upon successful completion, capa prints a summary of detected capabilities with explanations. Confirm you see capability names and possibly matched code locations or metadata.
+
+This output confirms that capa is installed correctly and operational in your environment.
+</Step>
+</Steps>
+
+### Next Steps
+
+With capa installed, tested, and configured for basic use, you can explore more advanced workflows and customization options. The following resources in this documentation will guide you through understanding capa's core concepts, writing or modifying detection rules, and integrating capa into your analysis pipelines:
+
+- [Configuration Setup](/getting-started/configuration-and-first-run/configuration-setup)
+- [First Successful Run](/getting-started/configuration-and-first-run/first-successful-run)
+- [Analyzing Binaries with capa: End-to-End Workflow](/guides/getting-started-workflows/analyzing-binaries-with-capa)
+
+These areas will deepen your capability to leverage capa fully and customize it to your binary analysis needs.
+
+<Tip>
+If you encounter 'command not found' errors after installation, ensure that your Python scripts directory is included in your system's PATH environment variable.
+</Tip>
