@@ -1,0 +1,96 @@
+---
+title: "Troubleshooting and Quick Validation"
+description: "Address the most frequent setup roadblocks and learn essential tips for validating your capa installation quickly. Includes how to interpret setup errors, verify correct installation, and re-run analysis with confidence."
+---
+
+# Troubleshooting and Quick Validation
+
+Ensuring your capa installation is functioning correctly is essential for confident and effective use. This guide helps you rapidly identify and resolve the most common setup issues and provides practical methods to verify that capa is properly installed and ready to analyze binaries. By learning how to interpret setup errors and validate your environment quickly, you minimize downtime and start gaining insights faster.
+
+## Understanding Common Setup Errors
+
+During installation or the first runs of capa, error messages often reveal critical clues about missing dependencies, configuration mishaps, or environment conflicts. For example, missing Python packages or outdated versions can trigger import errors, while path or permission issues may surface as file access failures.
+
+When you encounter an error, take note of the exact message and context. Often, the terminal output will pinpoint the root cause or direct you to a missing package. Addressing these errors usually involves verifying your Python environment and confirming that all prerequisites are satisfied as documented in the [Prerequisites and System Requirements](/getting-started/setup-and-installation/prerequisites-and-requirements) page.
+
+If errors are ambiguous, rerunning the command with verbose or debug flags (e.g., `capa -v`) can produce more detailed diagnostics.
+
+## Verifying a Correct Installation
+
+To confirm capa is installed properly, start by running the basic version check command. This quick validation confirms both capa and its dependencies are recognized by your system:
+
+<Steps>
+<Step title="Run capa version check">
+Execute:
+
+```bash
+capa --version
+```
+
+A successful output displays the installed capa version, for example:
+
+```
+capa 3.10.0
+```
+
+This confirms capa is correctly accessible in your environment.
+</Step>
+<Step title="Test capa on a simple sample binary">
+Obtain a known, benign binary such as a simple compiled executable and run:
+
+```bash
+capa path/to/sample.exe
+```
+
+Observe the output summary and detection results. A successful run without errors indicates capa is analyzing files correctly.
+</Step>
+<Step title="Check Python environment and dependencies">
+If capa is installed via pip, verify dependencies with:
+
+```bash
+pip show capa
+pip freeze | grep 'capaclassic\|pefile\|lief'
+```
+
+Confirm all required packages are installed and versions match those specified in the installation guides.
+</Step>
+</Steps>
+
+If these steps complete without error, you can be confident your core capa setup is functional.
+
+## Re-Running Analysis with Confidence
+
+When you modify your configuration or update your rules, it’s important to re-run your analyses cleanly. Clear previous outputs or logs to avoid confusion and ensure fresh results. Run capa with explicit output options to store results for later review:
+
+```bash
+capa --json path/to/binary > analysis-results.json
+```
+
+This guarantees you have a reproducible record. Review the JSON output to confirm capabilities were identified as expected.
+
+For complex diagnostic runs, use higher verbosity:
+
+```bash
+capa -v path/to/binary
+```
+
+This verbosity unlocks detailed internal processing logs useful for troubleshooting unexpected results.
+
+## Tips for Common Pitfalls
+
+<Tip>
+One common difficulty is running capa in a Python environment with conflicting package versions. Consider using a virtual environment dedicated to capa to isolate dependencies and prevent conflicts.
+</Tip>
+<Warning>
+If you receive file-not-found errors, verify your paths carefully. Relative paths should be run from the directory containing your target binary or provide absolute paths to ensure capa can locate files.
+</Warning>
+
+Troubleshooting and validation are straightforward once you know what signals to look for. Following these quick checks saves time and frustration, enabling you to focus on extracting meaningful insights from your analysis.
+
+<Source url="https://github.com/mandiant/capa" branch="main" paths={[{"path": "README.md", "range": "1-40"}]} />
+
+---
+
+For comprehensive setup and configuration details, visit the [Installation Instructions](/getting-started/setup-and-installation/installation-instructions) and [Configuration Setup](/getting-started/configuration-and-first-run/configuration-setup) pages.
+
+After validating your setup, proceed to the [First Successful Run](/getting-started/configuration-and-first-run/first-successful-run) guide to learn how to perform your initial analysis with confidence.
